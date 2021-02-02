@@ -1,3 +1,6 @@
 <-code of LS,begin
 print("hello git")
 ->LS modify end 
+<-code of AqourAreA,first try
+print("hello world"）
+->AqourAreA modify end
