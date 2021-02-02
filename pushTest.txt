@@ -4,3 +4,7 @@ print("hello git")
 <-code of AqourAreA,first try
 print("hello world"）
 ->AqourAreA modify end
+
+<-CYH oh CYH
+printf("prefer C++");
+->C++ oh C++
