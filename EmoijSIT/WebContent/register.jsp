@@ -13,6 +13,8 @@
 </head>
 <body style="background-color: #c8c8c8">
 
+<!-- sadwas -->
+
 <header id="header">
 	<a href="#" style="display:block;margin-left:20px;">表情包智能推荐</a>
 	<nav class="links">
