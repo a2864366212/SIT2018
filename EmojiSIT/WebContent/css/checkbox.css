@@ -1,0 +1,82 @@
+@charset "UTF-8";
+.ul_box {
+	margin:0 auto;
+	padding:0;
+	list-style:none;
+	width:100px;
+	
+}
+.ul_box>li {
+	padding:10px 10px 0 10px;
+	overflow:hidden;
+	border-bottom:#e5e5e5 solid 1px;
+}
+.ul_box>li:last-child {
+	border-bottom:none;
+}
+.ul_box>li>div {
+	float:left;
+}
+.ul_box>li>div:nth-child(1) {
+	width:100px;
+}
+.ul_box>li>div:nth-child(2) {
+	width:80px;
+	overflow:hidden;
+}
+/*管理最基础的框样式*/
+.label_box>label {
+	float:left;
+	margin:0 1px 5px 0;
+	position:relative;/*相对定位*/
+	overflow:hidden;
+	border:1px solid #c0c0c0;
+	border-radius:20px;
+	z-index:0;
+}
+/*内置checkbox类型，很丑的小方框，隐藏掉*/
+.label_box>label>input {
+	position:absolute;
+	top:0;
+	left:-20px;
+	display:none;
+}
+.label_box>label>div {
+	font-size: 14px;
+	width:80px;
+	text-align:center;
+	height:40px;
+	line-height:40px;
+	color: #c0c0c0;
+	user-select:none;
+	overflow:hidden;
+	position:relative;
+}
+.label_box>label>input:checked + div {
+	/*display:none;新增*/
+	color: #ff8000;
+	background: #fbb8ac;
+}
+.label_box>label>input:checked + div:after {
+	content:'';
+	display:none;/*原为block*/
+	width:20px;
+	height:20px;
+	background-color:#d51917;
+	transform:skewY(-45deg);
+	position:absolute;
+	bottom:-10px;
+	right:0;
+	z-index:1;
+}
+.label_box>label>input:checked + div:before {
+	content:'';
+	display:block;/*原为block*/
+	width:3px;
+	height:8px;
+	transform:rotate(35deg);
+	position:absolute;
+	bottom:2px;
+	right:4px;
+	z-index:2;
+}
