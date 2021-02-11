@@ -17,7 +17,7 @@
 	<a href="#" style="display:block;margin-left:20px;">表情包智能推荐</a>
 	<nav class="links">
 		<ul>
-			<li><a href="emoijRecommend.jsp">表情推荐</a></li>
+			<li><a href="emojiRecommend.jsp">表情推荐</a></li>
 			<li><a href="#">上传表情</a></li>
 		</ul>
 	</nav>
