@@ -6,22 +6,22 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 <title>推荐功能页面</title>
-	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
 	<link rel="stylesheet" type="text/css" href="css/component.css" />
 	<link rel="stylesheet" type="text/css" href="css/fxsmall.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
 	<link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-	<script src="js/modernizr.custom.js"></script>
+	<!-- <script src="js/modernizr.custom.js"></script>  -->
+	<script src="js/ScrollPicLeft.js"></script>
     <style>
-	.imgdiv{
-		width: 60%;
-		position: fixed;
-		top: 0px;
-		left: 0px;
-		right: 0px;
-		bottom: 0px;
-		margin: auto;
-	}
+	html,body,ul,li{margin:0; padding:0;}
+	ul,li{ list-style:none;}
+	.dd_main{ width:1100px;height:200px;text-align:center;}
+	.zl_left { width:35px; float:left; text-align:left; padding-top:60px}
+	.zl_right { width:35px; float:right; text-align:right; padding-top:60px}
+	.zl_content { width:1020px; height:153px; float:left; overflow:hidden;}
+	.zl_content ul li { width:130px; padding:0 10px; text-align:center; float:left;}
+	.welcome{ position:fixed; width:100%; text-align:center; bottom:30px;}
+	.welcome a{ color:#0350B8;}
 	</style>
 </head>
 <body style="background-color: #c8c8c8">
@@ -59,36 +59,7 @@
 								<input type="text" name="query" placeholder="Search" />
 							</form>
 						</section>
-
-					<!-- Links -->
-						<section>
-							<ul class="links">
-								<li>
-									<a href="#">
-										<h3>Lorem ipsum</h3>
-										<p>Feugiat tempus veroeros dolor</p>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<h3>Dolor sit amet</h3>
-										<p>Sed vitae justo condimentum</p>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<h3>Feugiat veroeros</h3>
-										<p>Phasellus sed ultricies mi congue</p>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<h3>Etiam sed consequat</h3>
-										<p>Porta lectus amet ultricies</p>
-									</a>
-								</li>
-							</ul>
-						</section>
+	
 
 					<!-- Actions -->
 						<section>
@@ -116,34 +87,47 @@
 							</header>
 							<!-- <span class="image featured"><img src="images/pic01.jpg" alt="" /></span> -->
 							<section>
-							<div id="component" class="component component-small">
-								<ul class="itemwrap">
-									<li class="current">
-										<img  class="imgdiv" src="images/15.jpg" alt="img01"/>
-									</li>
-									<li>
-									<img class="imgdiv" src="images/17.jpg" alt="img02"/>
-									</li>
-									<li>
-									<img class="imgdiv" src="images/21.jpg" alt="img03"/>
-									</li>
-									<li>
-									<img class= "imgdiv" src="images/7.jpg" alt="img04"/>
-									</li>
-									<li>
-									<img class="imgdiv" src="images/0.jpg" alt="img05"/>
-									</li>
-								</ul>
-								<nav>
-									<a class="prev" href="#">Previous item</a>
-									<a class="next" href="#">Next item</a>
-								</nav>
-							</div>
+								<div class="dd_main">  
+								  <div class="zl_left" id="Left_Photo"><a href="javascript:void(0)"><img src="images/zl_tb1.jpg" width="24" height="32" /></a></div>
+								  <div class="zl_content">
+								    <ul id="ISL_Photo">
+								      <li><img src="images/0.jpg" width="150" height="153" /></li>
+								      <li><img src="images/15.jpg" width="150" height="153" /></li>
+								      <li><img src="images/17.jpg" width="150" height="153" /></li>
+								      <li><img src="images/21.jpg" width="150" height="153" /></li>
+								      <li><img src="images/7.jpg" width="150" height="153" /></li>
+								      <li><img src="images/pic01.jpg" width="150" height="153" /></li>
+								      <li><img src="images/pic02.jpg" width="150" height="153" /></li>
+								      <li><img src="images/pic03.jpg" width="150" height="153" /></li>
+								      <li><img src="images/pic04.jpg" width="150" height="153" /></li>
+								      <li><img src="images/pic05.jpg" width="150" height="153" /></li>
+								    </ul>
+								  </div>
+								  <div class="zl_right" id="Right_Photo"><a href="javascript:void(0)"><img src="images/zl_tb2.jpg" width="24" height="32" /></a></div>
+								</div>
+								<script type="text/javascript">
+									var scrollPhoto = new ScrollPicleft();
+									scrollPhoto.scrollContId   = "ISL_Photo"; // 内容容器ID""
+									scrollPhoto.arrLeftId      = "Left_Photo";//左箭头ID
+									scrollPhoto.arrRightId     = "Right_Photo"; //右箭头ID
+									scrollPhoto.frameWidth     = 1000;//显示框宽度
+									scrollPhoto.pageWidth      = 1000; //翻页宽度
+									scrollPhoto.speed          = 10; //移动速度(单位毫秒，越小越快)
+									scrollPhoto.space          = 10; //每次移动像素(单位px，越大越快)
+									scrollPhoto.autoPlay       = false; //自动播放
+									scrollPhoto.autoPlayTime   = 3; //自动播放间隔时间(秒)
+									scrollPhoto.initialize(); //初始化	
+								</script>
 							</section>
 							<script src="js/classie.js"></script>
 							<script src="js/main.js"></script>
 							<!-- <div id="textarea" contenteditable="true" data-text="输入内容..."></div> -->
-							<textarea style="border:0;border-radius:5px;background-color:rgba(241,241,241,.98);height: 200px;padding: 10px;resize: none;" placeholder="在此输入..."></textarea>
+							<form method="get" action="#">
+								<textarea style="border:0;border-radius:5px;background-color:rgba(241,241,241,.98);height: 100px;padding: 10px;resize: none;" placeholder="在此输入..."></textarea>
+								<div style="text-align:right" class=NULL>
+									<button type="submit" style="height:30px;text-align:center;margin:10px">提交</button>
+								</div>
+							</form>
 							
 							<footer>
 								<ul class="stats">
