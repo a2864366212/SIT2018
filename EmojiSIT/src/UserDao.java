@@ -3,14 +3,16 @@ import java.sql.*;
 public class UserDao {
 	DbUtil dbUtil;
 	Statement stmt;
-	UserDao() throws SQLException{
+	UserDao(){
+		dbUtil=new DbUtil();
+		
 		try {
-			dbUtil=new DbUtil();
-		} catch (IOException e) {
+			stmt = dbUtil.getConnect().createStatement();
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			System.out.println("get stmt fail");
 			e.printStackTrace();
 		}
-		stmt = dbUtil.getConnect().createStatement();
 	}
 	public int add(String sql) {
 		int res=-1;

@@ -111,9 +111,9 @@
 			</fieldset>
 		</form>
 
-	
 	<script src="js/jquery-2.1.1.min.js"></script>
-	<script src="js/jquery.easing.min.js" type="text/javascript"></script>
+	<script type="text/javascript" charset="utf-8" src="js/jquery.easing.min.js"></script>
+	
 	<script>
 	var current_fs, next_fs, previous_fs;
 	var left, opacity, scale;
@@ -133,8 +133,7 @@
 	        success: function (data) {
 	        	var jsonObj = eval(data);
 	        	ajaxRes=jsonObj.RegisterInfo;
-	    		/*alert(jsonObj.email);
-	    		alert(jsonObj.RegisterInfo);*/
+	    		
 	        },
 	        error:function(){
 	        	alert("获取用户信息失败，请联系管理员！");

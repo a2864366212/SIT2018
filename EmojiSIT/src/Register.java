@@ -51,18 +51,12 @@ public class Register extends HttpServlet {
 					String str = "INSERT INTO user (email,phone,pass,username ) VALUES ( '%s', '%s', '%s', '%s' )";
 					String sql=String.format(str,email,null,pass,null);
 			        int res = -1;
-			        UserDao userDao;
-					try {
-						userDao = new UserDao();
-						String sqlSelect="select * from user where email='"+email+"'";
-						boolean isExist=userDao.isExist(sqlSelect);//判断当前注册的邮箱是否已经存在于数据库
-						if(isExist)res=-1;
-						else {
-							res=userDao.add(sql);
-						}
-					} catch (SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+			        UserDao userDao=new UserDao();
+					String sqlSelect="select * from user where email='"+email+"'";
+					boolean isExist=userDao.isExist(sqlSelect);//判断当前注册的邮箱是否已经存在于数据库
+					if(isExist)res=-1;
+					else {
+						res=userDao.add(sql);
 					}
 					PrintWriter out = response.getWriter();
 					Map map = new HashMap();
@@ -86,20 +80,14 @@ public class Register extends HttpServlet {
 					String phone=request.getParameter("phone");
 					// 业务逻辑处理
 			        int res = -1;
-			        UserDao userDao;
-					try {
-						userDao = new UserDao();
-						String sqlSelect="select * from user where username='"+username+"'";
-						boolean isExist=userDao.isExist(sqlSelect);//判断当前注册的用户名是否已经存在于数据库
-						if(isExist)res=-1;
-						else {
-							String str="update user set username='%s',phone='%s' where email='%s'";
-							String sqlUpdate=String.format(str, username,phone,email);
-							res=userDao.update(sqlUpdate);
-						}
-					} catch (SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+			        UserDao userDao = new UserDao();
+					String sqlSelect="select * from user where username='"+username+"'";
+					boolean isExist=userDao.isExist(sqlSelect);//判断当前注册的用户名是否已经存在于数据库
+					if(isExist)res=-1;
+					else {
+						String str="update user set username='%s',phone='%s' where email='%s'";
+						String sqlUpdate=String.format(str, username,phone,email);
+						res=userDao.update(sqlUpdate);
 					}
 					PrintWriter out = response.getWriter();
 					Map map = new HashMap();

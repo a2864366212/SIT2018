@@ -2,16 +2,28 @@ import java.util.*;
 import java.io.*;
 import java.sql.*;
 public class DbUtil {
-	private String propertiesPath=this.getClass().getResource("/db.properties").getPath();;
+	private String propertiesPath;
 	private Connection connect;
 	private String driver;
 	private String url;
 	private String mysqlUser;
 	private String pass;
-	DbUtil() throws IOException{
-		 InputStream in = new BufferedInputStream(new FileInputStream(propertiesPath));
+	DbUtil(){
+		propertiesPath=this.getClass().getResource("/db.properties").getPath();
+		InputStream in=null;
+		try {
+			in = new BufferedInputStream(new FileInputStream(propertiesPath));
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		 Properties prop = new Properties();
-		 prop.load(in);
+		 try {
+			prop.load(in);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		 driver=prop.getProperty("driver");
 		 url=prop.getProperty("url");
 		 mysqlUser=prop.getProperty("mysqlUser");
