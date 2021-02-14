@@ -55,6 +55,7 @@ local.properties
 # PDT-specific (PHP Development Tools)
 .buildpath
 
+.classpath
 # sbteclipse plugin
 .target
 
@@ -68,7 +69,7 @@ local.properties
 .springBeans
 
 # Code Recommenders
-.recommenders/
+.recommenders/.project
 
 # Annotation Processing
 .apt_generated/
@@ -82,3 +83,59 @@ local.properties
 # Uncomment this line if you wish to ignore the project description file.
 # Typically, this file would be tracked if it contains build/dependency configurations:
 #.project
+
+/.settings/
+/target/
+ 
+# built application files
+*.apk
+*.ap_
+ 
+# files for the dex VM
+*.dex
+ 
+# Java class files
+*.class
+*.jar
+ 
+# generated files
+bin/
+gen/
+ 
+# Eclipse project files
+.classpath
+.project
+.DS_Store
+# Created by .ignore support plugin (hsz.mobi)
+#.gitignore
+
+# Operating System Files 
+
+*.DS_Store 
+Thumbs.db 
+*.sw? 
+.#* 
+*# 
+*~ 
+*.sublime-* 
+
+# Build Artifacts 
+
+.gradle/
+build/
+target/
+bin/
+dependency-reduced-pom.xml 
+
+# Eclipse Project Files 
+
+.classpath
+.project
+.settings/ 
+
+# IntelliJ IDEA Files 
+
+*.iml
+*.ipr 
+*.iws 
+*.idea
