@@ -107,11 +107,7 @@ gen/
 .project
 .DS_Store
 # Created by .ignore support plugin (hsz.mobi)
-<<<<<<< Updated upstream
 #.gitignore
-=======
-.gitignore
->>>>>>> Stashed changes
 
 # Operating System Files 
 
