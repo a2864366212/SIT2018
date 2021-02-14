@@ -35,7 +35,6 @@
 		</ul>
 	</nav>
 </header>
-
 		<!-- multistep form -->
 		<form id="msform">
 			<!-- progressbar -->
@@ -51,18 +50,16 @@
 				<input type="text" name="email" placeholder="Email地址" />
 				<input type="password" name="pass" placeholder="密码" />
 				<input type="password" name="cpass" placeholder="重复密码" />
-				<input type="button" name="next" class="next action-button" value="Next" style="line-height: normal;"/>
+				<input type="button" id="nextBtn1" class="next action-button" value="Next" style="line-height: normal;"/>
+				<input type=hidden name="registerNextBtn" value="btn1">
 			</fieldset>
 			<fieldset>
 				<h2 class="fs-title">个人详细信息</h2>
 				<h3 class="fs-subtitle">个人详细信息是保密的，不会被泄露</h3>
-				<input type="text" name="fname" placeholder="昵称" />
-				<input type="text" name="lname" placeholder="姓名" />
+				<input type="text" name="username" placeholder="用户名" />
 				<input type="text" name="phone" placeholder="电话号码" />
-				<textarea name="address" placeholder="家庭住址"></textarea>
-				<input type="button" name="previous" class="previous action-button" value="Previous" style="line-height: normal;"/>
-				<input type="button" name="next" class="next action-button" value="Next" style="line-height: normal;"/>
-				<!-- <input type="submit" name="submit" class="submit action-button" value="Submit" /> -->
+				<input type="button" id="nextBtn2" class="next action-button" value="Next" style="line-height: normal;"/>
+				<input type=hidden name="registerNextBtn" value="btn2">
 			</fieldset>
 			<fieldset>
 				<h2 class="fs-title" style="height: 10px;width: 260px;">爱好选择</h2>
@@ -109,13 +106,8 @@
 						<div>游泳</div>
 					</label>
 				</div>
-				<!--
-					<input type="text" name="x-weibo" placeholder="新浪微博" />
-					<input type="text" name="t-weibo" placeholder="腾讯微博" />
-					<input type="text" name="qq" placeholder="腾讯QQ" />
-				-->
-				<input type="button" name="previous" class="previous action-button" value="Previous" style="line-height: normal;"/>
-				<input type="submit" name="submit" class="submit action-button" value="Submit" style="line-height: normal;"/>
+				<input type="button" id="registerSubmit" class="submit action-button" value="Submit" style="line-height: normal;"/>
+				<input type=hidden name="registerNextBtn" value="btn3">
 			</fieldset>
 		</form>
 
@@ -126,9 +118,36 @@
 	var current_fs, next_fs, previous_fs;
 	var left, opacity, scale;
 	var animating;
-	$('.next').click(function () {
-	    if (animating)
-	        return false;
+	var ajaxRes=false;
+	
+	$("#nextBtn1").click(function () {
+		var email = $("input[name=email]").val();
+		var pass =$("input[name=pass]").val();
+		var btn="btn1";
+		$.ajax({
+	        type: "post",
+	        dataType: "json",
+	        url: "Register",
+	        async:false,
+	        data:{"email":email,"pass":pass,"btn":btn},
+	        success: function (data) {
+	        	var jsonObj = eval(data);
+	        	ajaxRes=jsonObj.RegisterInfo;
+	    		/*alert(jsonObj.email);
+	    		alert(jsonObj.RegisterInfo);*/
+	        },
+	        error:function(){
+	        	alert("获取用户信息失败，请联系管理员！");
+	        	}
+	     });
+		
+		if (ajaxRes==false)
+		    return false;
+		    else{
+		    	alert("注册成功");
+		    }
+
+		if(animating) return false;
 	    animating = true;
 	    current_fs = $(this).parent();
 	    next_fs = $(this).parent().next();
@@ -152,6 +171,58 @@
 	        },
 	        easing: 'easeInOutBack'
 	    });
+	    
+	});
+	$("#nextBtn2").click(function () {
+		var username=$("input[name=username]").val();
+		var phone = $("input[name=phone]").val();
+		var btn="btn2";
+		$.ajax({
+	        type: "post",
+	        dataType: "json",
+	        url: "Register",
+	        async:false,
+	        data:{"username":username,"phone":phone,"btn":btn},
+	        success: function (data) {
+	        	var jsonObj = eval(data);
+	        	ajaxRes=jsonObj.RegisterInfo;
+	        },
+	        error:function(){
+	        	alert("获取用户信息失败，请联系管理员！");
+	        	}
+	     });
+		
+		if (ajaxRes==false)
+		    return false;
+		    else{
+		    	alert("个人信息录入成功");
+		    }
+
+		if(animating) return false;
+	    animating = true;
+	    current_fs = $(this).parent();
+	    next_fs = $(this).parent().next();
+	    $('#progressbar li').eq($('fieldset').index(next_fs)).addClass('active');
+	    next_fs.show();
+	    current_fs.animate({ opacity: 0 }, {
+	        step: function (now, mx) {
+	            scale = 1 - (1 - now) * 0.2;
+	            left = now * 50 + '%';
+	            opacity = 1 - now;
+	            current_fs.css({ 'transform': 'scale(' + scale + ')' });
+	            next_fs.css({
+	                'left': left,
+	                'opacity': opacity
+	            });
+	        },
+	        duration: 800,
+	        complete: function () {
+	            current_fs.hide();
+	            animating = false;
+	        },
+	        easing: 'easeInOutBack'
+	    });
+	    
 	});
 	$('.previous').click(function () {
 	    if (animating)
@@ -180,8 +251,8 @@
 	        easing: 'easeInOutBack'
 	    });
 	});
-	$('.submit').click(function () {
-	    return false;
+	$('#registerSubmit').click(function(){
+		window.location.href="emojiRecommend.jsp";
 	});
 	</script>
 </body>
