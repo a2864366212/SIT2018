@@ -119,10 +119,40 @@
 	var left, opacity, scale;
 	var animating;
 	var ajaxRes=false;
-	
+	function judgePass(pass,cpass){
+		if(pass!=cpass){
+			alert("两次输入密码不一致");
+			return false;
+		}
+		if(pass.length<6||pass.length>20){
+			alert("密码长度应控制在6~20位");
+			return false;
+		}
+		var res=0;
+		if(pass.indexOf("_")!=-1)res=res+1;
+		var digit=/[0-9]/;
+		if(digit.test(pass))res=res+1;
+		var letter=/[a-z]/i;
+		if(letter.test(pass))res=res+1;
+		if(res<2){
+			alert("密码至少由下划线、数字、字母中的两种进行组合");
+			return false;
+		}
+		return true;
+	}
 	$("#nextBtn1").click(function () {
 		var email = $("input[name=email]").val();
 		var pass =$("input[name=pass]").val();
+		var cpass = $("input[name=cpass]").val();
+		//邮箱格式验证
+		var reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+		if(!reg.test(email)){
+			alert("邮箱格式不正确");
+			return false;
+		}
+		//密码验证
+		if(!judgePass(pass,cpass))return false;
+		
 		var btn="btn1";
 		$.ajax({
 	        type: "post",

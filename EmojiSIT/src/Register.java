@@ -67,7 +67,7 @@ public class Register extends HttpServlet {
 						session.setAttribute("email", email);
 					}else {
 						map.put("email", email);
-						map.put("RegisterInfo", Boolean.FALSE);
+						map.put("registerInfo", Boolean.FALSE);
 					}
 					String jsonOutput= JSON.toJSONString(map);
 					out.print(jsonOutput);

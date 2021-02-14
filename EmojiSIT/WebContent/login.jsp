@@ -42,16 +42,16 @@
           <form class="form-horizontal">
             <span class="heading">用户登录</span>
             <div class="form-group">
-              <input type="email" class="form-control" id="inputEmail3" placeholder="电子邮件">
+              <input type="email" class="form-control" id="email" placeholder="电子邮件">
               <i class="fa fa-user"></i>
             </div>
             <div class="form-group help">
-              <input type="password" class="form-control" id="inputPassword3" placeholder="密码">
+              <input type="password" class="form-control" id="pass" placeholder="密码">
               <i class="fa fa-lock"></i>
               <a href="#" class="fa fa-question-circle"></a>
             </div>
             <div class="form-group">
-              <button type="submit" class="btn btn-default" style="height: 40px">立刻登录</button>
+              <button type="button" class="btn btn-default" onclick="loginBtnClick();" style="height: 40px">立刻登录</button>
             </div>
             <div style="height: 40px;line-height: 40px; text-align:center;">
               <a href="register.jsp">立即注册</a>
@@ -62,6 +62,41 @@
     </div>
   </div>
 </div>
+<script src="js/jquery-2.1.1.min.js"></script>
+
+<script type="text/javascript">
+function loginBtnClick(){
+	var email=$("input[id=email]").val();
+	var pass=$("input[id=pass]").val();
+	//邮箱格式验证
+	var reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+	if(!reg.test(email)){
+		alert("邮箱格式不正确");
+		return false;
+	}	
+	$.ajax({
+        type: "post",
+        dataType: "json",
+        url: "Login",
+        async:false,
+        data:{"email":email,"pass":pass},
+        success: function (data) {
+        	var jsonObj = eval(data);
+        	ajaxRes=jsonObj.result;
+        	alert(jsonObj.loginInfo);
+    		if(ajaxRes){
+    			window.location.href="emojiRecommend.jsp";
+    		}
+        },
+        error:function(){
+        	alert("获取用户信息失败，请联系管理员！");
+        	}
+     });
+	
+}
+</script>
+
+
 <style>
   .form-bg{
     padding: 2em 0;
