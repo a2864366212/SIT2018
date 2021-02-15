@@ -22,6 +22,12 @@
 	.zl_content ul li { width:130px; padding:0 10px; text-align:center; float:left;}
 	.welcome{ position:fixed; width:100%; text-align:center; bottom:30px;}
 	.welcome a{ color:#0350B8;}
+	.td_img{
+		max-width: 100%;
+		max-height: 100%;
+	}
+
+</div>
 	</style>
 </head>
 <body style="background-color: #c8c8c8">
@@ -85,22 +91,73 @@
 									<a href="#" class="author"><span class="name">Cyh</span><img src="images/0.jpg" alt="" /></a>
 								</div>
 							</header>
+							
 							<!-- <span class="image featured"><img src="images/pic01.jpg" alt="" /></span> -->
 							<section>
 								<div class="dd_main">  
 								  <div class="zl_left" id="Left_Photo"><a href="javascript:void(0)"><img src="images/zl_tb1.jpg" width="24" height="32" /></a></div>
 								  <div class="zl_content">
 								    <ul id="ISL_Photo">
-								      <li><img src="images/0.jpg" width="150" height="153" /></li>
-								      <li><img src="images/15.jpg" width="150" height="153" /></li>
-								      <li><img src="images/17.jpg" width="150" height="153" /></li>
-								      <li><img src="images/21.jpg" width="150" height="153" /></li>
-								      <li><img src="images/7.jpg" width="150" height="153" /></li>
-								      <li><img src="images/pic01.jpg" width="150" height="153" /></li>
-								      <li><img src="images/pic02.jpg" width="150" height="153" /></li>
-								      <li><img src="images/pic03.jpg" width="150" height="153" /></li>
-								      <li><img src="images/pic04.jpg" width="150" height="153" /></li>
-								      <li><img src="images/pic05.jpg" width="150" height="153" /></li>
+								      <li>
+									      <div style="height:150px;">
+									      	<div style="width:80px;height:80px;border:1px;">
+									      		<img class= "td_img" src="images/logo.jpg"/>
+								      		</div>
+								      		<div style="width:80px;height:80px;border:1px;">
+									      		<input type="text" value="testRate">
+								      		</div>
+									      </div>
+								      </li>
+								      <li>
+									      <div style="height:150px;">
+									      	<div style="width:80px;height:80px;border:1px;">
+									      		<img class= "td_img" src="images/0.jpg"/>
+								      		</div>
+								      		<div style="width:80px;height:80px;border:1px;">
+									      		<input type="text" value="testRate">
+								      		</div>
+									      </div>
+								      </li>
+								      <li>
+									      <div style="height:150px;">
+									      	<div style="width:80px;height:80px;border:1px;">
+									      		<img class= "td_img" src="images/17.jpg"/>
+								      		</div>
+								      		<div style="width:80px;height:80px;border:1px;">
+									      		<input type="text" value="testRate">
+								      		</div>
+									      </div>
+								      </li>
+								      <li>
+									      <div style="height:150px;">
+									      	<div style="width:80px;height:80px;border:1px;">
+									      		<img class= "td_img" src="images/15.jpg"/>
+								      		</div>
+								      		<div style="width:80px;height:80px;border:1px;">
+									      		<input type="text" value="testRate">
+								      		</div>
+									      </div>
+								      </li>
+								      <li>
+									      <div style="height:150px;">
+									      	<div style="width:80px;height:80px;border:1px;">
+									      		<img class= "td_img" src="images/21.jpg"/>
+								      		</div>
+								      		<div style="width:80px;height:80px;border:1px;">
+									      		<input type="text" value="testRate">
+								      		</div>
+									      </div>
+								      </li>
+								      <li>
+									      <div style="height:150px;">
+									      	<div style="width:80px;height:80px;border:1px;">
+									      		<img class= "td_img" src="images/7.jpg"/>
+								      		</div>
+								      		<div style="width:80px;height:80px;border:1px;">
+									      		<input type="text" value="testRate">
+								      		</div>
+									      </div>
+								      </li>
 								    </ul>
 								  </div>
 								  <div class="zl_right" id="Right_Photo"><a href="javascript:void(0)"><img src="images/zl_tb2.jpg" width="24" height="32" /></a></div>
