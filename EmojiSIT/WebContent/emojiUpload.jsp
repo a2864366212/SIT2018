@@ -39,7 +39,7 @@
 		<nav class="links">
 			<ul>
 				<li><a href="emojiRecommend.jsp">表情推荐</a></li>
-				<li><a href="#">上传表情</a></li>
+				<li><a href="emojiUpload.jsp">上传表情</a></li>
 			</ul>
 		</nav>
 		<nav class="main">
@@ -104,8 +104,7 @@
 								</div>
 								<div class="clearDiv"></div>
 								<div style="text-align:right;display:flex;justify-content:center;align-items:center;" >
-										<div class="uploadbtns" onclick="addEmojiCaptionTag()" style="float:left;margin-top: 10px;margin-right: 50px;">测试添加</div>
-										<div class="uploadbtns" onclick="uploadFiles()" style="float:left;margin-top: 10px;margin-left: 50px;">开始上传</div>
+										<div class="uploadbtns" onclick="uploadFiles()" style="float:left;margin-top: 10px;">开始上传</div>
 										<div class="clearDiv"></div>
 										
 								</div>

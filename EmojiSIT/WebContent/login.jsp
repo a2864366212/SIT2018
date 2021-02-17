@@ -17,7 +17,7 @@
   <nav class="links">
     <ul>
       <li><a href="emojiRecommend.jsp">表情推荐</a></li>
-      <li><a href="#">上传表情</a></li>
+      <li><a href="emojiUpload.jsp">上传表情</a></li>
     </ul>
   </nav>
   <nav class="main">
