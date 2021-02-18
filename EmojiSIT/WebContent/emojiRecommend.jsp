@@ -29,7 +29,7 @@
 	.cleanfloat::after{display: block; clear: both; content:""; visibility: hidden; height: 0;}/*清浮动*/
 	.cleanfloat ul li{list-style:none; float:left; color:#ccc; cursor:pointer;width:15px;height:15px;padding:0px;}/*五角星样式*/
 	.hs,.cs{color:#f00 !important ;}/*五角星点击后样式*/
-</div>
+	</div>
 	</style>
 </head>
 <body style="background-color: #c8c8c8">
@@ -212,41 +212,7 @@
 								  </div>
 								  <div class="zl_right" id="Right_Photo"><a href="javascript:void(0)"><img src="images/zl_tb2.jpg" width="24" height="32" /></a></div>
 								</div>
-								<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
-								<script type="text/javascript">
-									var scrollPhoto = new ScrollPicleft();
-									scrollPhoto.scrollContId   = "ISL_Photo"; // 内容容器ID""
-									scrollPhoto.arrLeftId      = "Left_Photo";//左箭头ID
-									scrollPhoto.arrRightId     = "Right_Photo"; //右箭头ID
-									scrollPhoto.frameWidth     = 1000;//显示框宽度
-									scrollPhoto.pageWidth      = 1000; //翻页宽度
-									scrollPhoto.speed          = 10; //移动速度(单位毫秒，越小越快)
-									scrollPhoto.space          = 10; //每次移动像素(单位px，越大越快)
-									scrollPhoto.autoPlay       = false; //自动播放
-									scrollPhoto.autoPlayTime   = 3; //自动播放间隔时间(秒)
-									scrollPhoto.initialize(); //初始化	
-								</script>
-								<script>
-								    $(function () {
-								        $(".cleanfloat ul li").hover(function(){
-								            $(this).addClass('hs');
-								            $(this).prevAll().addClass('hs');
-								        },function(){
-								            $(this).removeClass('hs');
-								            $(this).prevAll().removeClass('hs');
-								        })
-								
-								        $(".cleanfloat ul li").click(function () {
-								            $(this).addClass('cs');
-								            $(this).prevAll().addClass('cs');
-								            $(this).nextAll().removeClass('cs');
-								        })
-								    })
-								</script>
 							</section>
-							<script src="js/classie.js"></script>
-							<script src="js/main.js"></script>
-							<!-- <div id="textarea" contenteditable="true" data-text="输入内容..."></div> -->
 							<form method="get" action="#">
 								<textarea style="border:0;border-radius:5px;background-color:rgba(241,241,241,.98);height: 100px;padding: 10px;resize: none;" placeholder="在此输入..."></textarea>
 								<div style="text-align:right" class=NULL>
@@ -262,11 +228,40 @@
 								</ul>
 							</footer>
 						</article>
-
 				</div>
-
-
 		</div>
-		
 </body>
+<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+<script src="js/classie.js"></script>
+<script src="js/main.js"></script>
+<script type="text/javascript">
+	var scrollPhoto = new ScrollPicleft();
+	scrollPhoto.scrollContId   = "ISL_Photo"; // 内容容器ID""
+	scrollPhoto.arrLeftId      = "Left_Photo";//左箭头ID
+	scrollPhoto.arrRightId     = "Right_Photo"; //右箭头ID
+	scrollPhoto.frameWidth     = 1000;//显示框宽度
+	scrollPhoto.pageWidth      = 1000; //翻页宽度
+	scrollPhoto.speed          = 10; //移动速度(单位毫秒，越小越快)
+	scrollPhoto.space          = 10; //每次移动像素(单位px，越大越快)
+	scrollPhoto.autoPlay       = false; //自动播放
+	scrollPhoto.autoPlayTime   = 3; //自动播放间隔时间(秒)
+	scrollPhoto.initialize(); //初始化	
+</script>
+<script>
+    $(function () {
+        $(".cleanfloat ul li").hover(function(){
+            $(this).addClass('hs');
+            $(this).prevAll().addClass('hs');
+        },function(){
+            $(this).removeClass('hs');
+            $(this).prevAll().removeClass('hs');
+        })
+
+        $(".cleanfloat ul li").click(function () {
+            $(this).addClass('cs');
+            $(this).prevAll().addClass('cs');
+            $(this).nextAll().removeClass('cs');
+        })
+    })
+</script>
 </html>
