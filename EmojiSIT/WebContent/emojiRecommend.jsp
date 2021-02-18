@@ -26,7 +26,9 @@
 		max-width: 100%;
 		max-height: 100%;
 	}
-
+	.cleanfloat::after{display: block; clear: both; content:""; visibility: hidden; height: 0;}/*清浮动*/
+	.cleanfloat ul li{list-style:none; float:left; color:#ccc; cursor:pointer;width:15px;height:15px;padding:0px;}/*五角星样式*/
+	.hs,.cs{color:#f00 !important ;}/*五角星点击后样式*/
 </div>
 	</style>
 </head>
@@ -104,7 +106,15 @@
 									      		<img class= "td_img" src="images/logo.jpg"/>
 								      		</div>
 								      		<div style="width:80px;height:80px;border:1px;">
-									      		<input type="text" value="testRate">
+												<div class="cleanfloat">
+													<ul>
+														<li>&#9733;</li>
+														<li>&#9733;</li>
+														<li>&#9733;</li>
+														<li>&#9733;</li>
+														<li>&#9733;</li>
+													</ul>
+												</div>
 								      		</div>
 									      </div>
 								      </li>
@@ -114,7 +124,15 @@
 									      		<img class= "td_img" src="images/0.jpg"/>
 								      		</div>
 								      		<div style="width:80px;height:80px;border:1px;">
-									      		<input type="text" value="testRate">
+												<div class="cleanfloat">
+													<ul>
+														<li>&#9733;</li>
+														<li>&#9733;</li>
+														<li>&#9733;</li>
+														<li>&#9733;</li>
+														<li>&#9733;</li>
+													</ul>
+												</div>
 								      		</div>
 									      </div>
 								      </li>
@@ -124,7 +142,15 @@
 									      		<img class= "td_img" src="images/17.jpg"/>
 								      		</div>
 								      		<div style="width:80px;height:80px;border:1px;">
-									      		<input type="text" value="testRate">
+												<div class="cleanfloat">
+													<ul>
+														<li>&#9733;</li>
+														<li>&#9733;</li>
+														<li>&#9733;</li>
+														<li>&#9733;</li>
+														<li>&#9733;</li>
+													</ul>
+												</div>
 								      		</div>
 									      </div>
 								      </li>
@@ -134,7 +160,15 @@
 									      		<img class= "td_img" src="images/15.jpg"/>
 								      		</div>
 								      		<div style="width:80px;height:80px;border:1px;">
-									      		<input type="text" value="testRate">
+												<div class="cleanfloat">
+													<ul>
+														<li>&#9733;</li>
+														<li>&#9733;</li>
+														<li>&#9733;</li>
+														<li>&#9733;</li>
+														<li>&#9733;</li>
+													</ul>
+												</div>
 								      		</div>
 									      </div>
 								      </li>
@@ -144,7 +178,15 @@
 									      		<img class= "td_img" src="images/21.jpg"/>
 								      		</div>
 								      		<div style="width:80px;height:80px;border:1px;">
-									      		<input type="text" value="testRate">
+												<div class="cleanfloat">
+													<ul>
+														<li>&#9733;</li>
+														<li>&#9733;</li>
+														<li>&#9733;</li>
+														<li>&#9733;</li>
+														<li>&#9733;</li>
+													</ul>
+												</div>
 								      		</div>
 									      </div>
 								      </li>
@@ -154,7 +196,15 @@
 									      		<img class= "td_img" src="images/7.jpg"/>
 								      		</div>
 								      		<div style="width:80px;height:80px;border:1px;">
-									      		<input type="text" value="testRate">
+												<div class="cleanfloat">
+													<ul>
+														<li>&#9733;</li>
+														<li>&#9733;</li>
+														<li>&#9733;</li>
+														<li>&#9733;</li>
+														<li>&#9733;</li>
+													</ul>
+												</div>
 								      		</div>
 									      </div>
 								      </li>
@@ -162,6 +212,7 @@
 								  </div>
 								  <div class="zl_right" id="Right_Photo"><a href="javascript:void(0)"><img src="images/zl_tb2.jpg" width="24" height="32" /></a></div>
 								</div>
+								<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
 								<script type="text/javascript">
 									var scrollPhoto = new ScrollPicleft();
 									scrollPhoto.scrollContId   = "ISL_Photo"; // 内容容器ID""
@@ -174,6 +225,23 @@
 									scrollPhoto.autoPlay       = false; //自动播放
 									scrollPhoto.autoPlayTime   = 3; //自动播放间隔时间(秒)
 									scrollPhoto.initialize(); //初始化	
+								</script>
+								<script>
+								    $(function () {
+								        $(".cleanfloat ul li").hover(function(){
+								            $(this).addClass('hs');
+								            $(this).prevAll().addClass('hs');
+								        },function(){
+								            $(this).removeClass('hs');
+								            $(this).prevAll().removeClass('hs');
+								        })
+								
+								        $(".cleanfloat ul li").click(function () {
+								            $(this).addClass('cs');
+								            $(this).prevAll().addClass('cs');
+								            $(this).nextAll().removeClass('cs');
+								        })
+								    })
 								</script>
 							</section>
 							<script src="js/classie.js"></script>
