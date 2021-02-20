@@ -42,7 +42,7 @@ public class Login extends HttpServlet {
 		UserDao userDao=new UserDao();
 		String sql="select * from user where email='"+email+"' ";
 		User user=userDao.getUser(sql);
-		
+		userDao.close();
 		map.put("email",email);
 		if(Objects.isNull(user)) {
 			map.put("result", Boolean.FALSE);

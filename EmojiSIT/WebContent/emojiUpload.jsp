@@ -125,8 +125,8 @@
     		
     	 '<div style="text-align:right;display:flex;justify-content:center;align-items:center;" name="EmojiCaptionTag">'
     	+'<div style="float:left;margin-top: 10px;margin-right: 10px;" name="EmojiLabel">'+EmojiLabel+'</div>'
-    	+'<textarea style="float:left;margin-top: 10px;margin-right: 10px;border:0;border-radius:5px;background-color:rgba(241,241,241,.98);height:40px;width: 35%;padding: 10px;resize: none;" placeholder="文字内容"></textarea>'
-    	+'<textarea style="float:left;margin-top: 10px;margin-right: 10px;border:0;border-radius:5px;background-color:rgba(241,241,241,.98);height:40px;width: 35%;padding: 10px;resize: none;" placeholder="属性描述"></textarea>'
+    	+'<textarea name="caption" style="float:left;margin-top: 10px;margin-right: 10px;border:0;border-radius:5px;background-color:rgba(241,241,241,.98);height:40px;width: 35%;padding: 10px;resize: none;" placeholder="文字内容"></textarea>'
+    	+'<textarea name="tag" style="float:left;margin-top: 10px;margin-right: 10px;border:0;border-radius:5px;background-color:rgba(241,241,241,.98);height:40px;width: 35%;padding: 10px;resize: none;" placeholder="属性描述"></textarea>'
     	+'<div class="clearDiv"></div>'
     	+'</div>';
     	$("#EmojiCaptionTagList").append(EmojiCaptionTagHtml);
@@ -244,10 +244,18 @@
         
     }
  	function getEmojiCaption(){
- 		
+ 		var captionArr={};//创建一个空对象
+ 		$('textarea[name=caption]').each(function(index,element){	//index下标 element 当前选中的元素
+ 			captionArr[index] = $(this).val();//压入对象数组
+ 		});
+ 		return captionArr;
  	}
  	function getEmojiTag(){
- 		
+ 		var tagArr={};//创建一个空对象
+ 		$('textarea[name=tag]').each(function(index,element){	//index下标 element 当前选中的元素
+ 			tagArr[index] = $(this).val();//压入对象数组
+ 		});
+ 		return tagArr;
  	}
     //上传照片
     var uploading = false;//是否处于上传中
@@ -259,14 +267,19 @@
             return;
             alert("请先添加上传文件！");
         }
+        var captionArr=getEmojiCaption();
+        var tagArr=getEmojiTag();
         var form = new FormData();
+        form.append("emojiNum",filearr.length);
         for(var c in filearr){
-            form.append("Emoji-"+c, filearr[c]);
+            form.append("emoji-"+c, filearr[c]);
+            form.append("caption-"+c, captionArr[c]);
+            form.append("tag-"+c, tagArr[c]);
         }
         $.ajax({
             type: 'post',
             data:form,
-            url:"UpFileUrl",
+            url:"EmojiUpload",
             processData: false,
             contentType: false,
             beforeSend: function(){
@@ -274,18 +287,17 @@
                 console.log("上传中...");;
             },
             success: function(data) {
+            	var jsonObj = eval('(' + data + ')');
                 uploading = false;
-                if(data.status){
-                    //上传成功
-                    filearr = [];
-                    $("#pictureul").html("");
+                if(jsonObj.emojiNum>0){
+                	alert("上传成功，数量:"+jsonObj.emojiNum);
                 }else{
-                    alert("上传异常，失败:"+data.msg);
+                    alert("上传异常，失败:"+jsonObj.emojiNum);
                 }
             },
             error: function(err) {
                 uploading = false;
-                console.error("上传异常，失败:"+err);
+                console.error("上传异常，error:"+err);
                 console.log(err);
             }
         });

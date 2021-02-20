@@ -58,6 +58,7 @@ public class Register extends HttpServlet {
 					else {
 						res=userDao.add(sql);
 					}
+					userDao.close();
 					PrintWriter out = response.getWriter();
 					Map map = new HashMap();
 					if(res>0) {

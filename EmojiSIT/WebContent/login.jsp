@@ -53,9 +53,11 @@
             <div class="form-group">
               <button type="button" class="btn btn-default" onclick="loginBtnClick();" style="height: 40px">立刻登录</button>
             </div>
+            <img src="/img/100.jpg">
             <div style="height: 40px;line-height: 40px; text-align:center;">
               <a href="register.jsp">立即注册</a>
             </div>
+            
           </form>
         </div>
       </div>
