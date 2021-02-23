@@ -1,4 +1,4 @@
-(function() {
+function mainjs(){
 	var support = { animations : Modernizr.cssanimations },
 		animEndEventNames = {
 			'WebkitAnimation' : 'webkitAnimationEnd',
@@ -22,7 +22,7 @@
 		hideNav();
 		changeEffect();
 		navNext.addEventListener( 'click', function( ev ) { ev.preventDefault(); navigate( 'next' ); } );
-		navPrev.addEventListener( 'click', function( ev ) { ev.preventDefault(); navigate( 'prev' ); } );
+		///navPrev.addEventListener( 'click', function( ev ) { ev.preventDefault(); navigate( 'prev' ); } );
 		//effectSel.addEventListener( 'change', changeEffect );
 	}
 
@@ -99,4 +99,4 @@
 	}
 
 	init();
-})();
+}

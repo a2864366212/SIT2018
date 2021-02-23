@@ -50,6 +50,7 @@ public class UserDao {
 				
 	   
 			}
+			rs.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -72,6 +73,7 @@ public class UserDao {
 				res=true;
 	   
 			}
+			rs.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

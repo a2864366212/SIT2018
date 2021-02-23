@@ -37,6 +37,17 @@ public class EmojiDao {
 		}
 		return res;
 	}
+	public int delete(String sql) {
+		int res=-1;
+		try {
+			res=stmt.executeUpdate(sql);
+			System.out.println("delete emoji op result: "+res);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
+	}
 	public Emoji getEmoji(String sql) {
 		ResultSet rs;
 		Emoji emoji=null;
@@ -46,18 +57,31 @@ public class EmojiDao {
 				emoji=new Emoji(   rs.getString("eid"),
 								   rs.getString("caption"),
 								   rs.getString("etag"),
-								   rs.getBoolean("review"),
 								   rs.getDate("uploaddate"),
 								   rs.getInt("uid"),
 								   rs.getString("type"));
+				break;
 			}
+			rs.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		return emoji;
 	}
-	
+	public ResultSet getEmojiResultSet(String sql) {
+		ResultSet rs=null;
+		Emoji emoji=null;
+		try {
+			rs=stmt.executeQuery(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return rs;
+	}
 	public void close() {
 		try {
 			stmt.close();

@@ -228,10 +228,9 @@
     	var EmojiIdx=($(that).parent().find('div[name=EmojiName]')).html();
     	EmojiIdx = parseInt(EmojiIdx.replace(/[^0-9]/ig,""));
     	var EmojiCaptionTagList=document.getElementById("EmojiCaptionTagList");//删除idx对应EmojiCaptionTag
-    	EmojiCaptionTagList.removeChild(EmojiCaptionTagList.childNodes[EmojiIdx]);
+    	EmojiCaptionTagList.removeChild(EmojiCaptionTagList.childNodes[EmojiIdx-1]);
         $(that).parent().remove();//上传的图片预览ul
-        filearr.splice(EmojiIdx,1);//上传的图片数组
-        //.remove();
+        filearr.splice(EmojiIdx-1,1);//上传的图片数组
         var EmojiList=$('div[name=EmojiName]');
         var EmojiLabelList=$('div[name=EmojiLabel]');
         
@@ -242,6 +241,11 @@
         	EmojiLabelList[i].innerHTML="表情"+(i+1)+': ';
         }
         
+    }
+    function clean(){
+    	$("#EmojiCaptionTagList").empty();//页面元素清除、
+    	$("#pictureul").empty();
+    	filearr.splice(0,filearr.length);//清空数据
     }
  	function getEmojiCaption(){
  		var captionArr={};//创建一个空对象
@@ -287,8 +291,10 @@
                 console.log("上传中...");;
             },
             success: function(data) {
+            	clean();//重置页面
             	var jsonObj = eval('(' + data + ')');
                 uploading = false;
+                
                 if(jsonObj.emojiNum>0){
                 	alert("上传成功，数量:"+jsonObj.emojiNum);
                 }else{
@@ -297,6 +303,8 @@
             },
             error: function(err) {
                 uploading = false;
+                clean();//重置页面
+                
                 console.error("上传异常，error:"+err);
                 console.log(err);
             }

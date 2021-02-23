@@ -17,17 +17,15 @@ public class Emoji {
 	private String eid;
 	private String caption;
 	private String etag;
-	private boolean review;
 	private Date uploaddate;
 	private int uid;
 	private String type;
 	Emoji(){}
-	Emoji(String eid,String caption,String etag,boolean review,Date uploaddate,int uid
+	Emoji(String eid,String caption,String etag,Date uploaddate,int uid
 			,String type){
 		this.eid=eid;
 		this.caption=caption;
 		this.etag=etag;
-		this.review=review;
 		this.uploaddate=uploaddate;
 		this.uid=uid;
 		this.type=type;
@@ -50,12 +48,6 @@ public class Emoji {
 	}
 	public void setEtag(String etag) {
 		this.etag = etag;
-	}
-	public boolean isReview() {
-		return review;
-	}
-	public void setReview(boolean review) {
-		this.review = review;
 	}
 	public Date getUploaddate() {
 		return uploaddate;

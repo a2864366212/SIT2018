@@ -78,7 +78,7 @@ public class EmojiUpload extends HttpServlet {
 			
 			String type=uploadData.get("type-"+idx);
 			
-			String str = "INSERT INTO emoji ( eid,caption,etag,uploaddate,type ) VALUES ( '%s', '%s', '%s', '%s', '%s' )";
+			String str = "INSERT INTO emoji_raw ( eid,caption,etag,uploaddate,type ) VALUES ( '%s', '%s', '%s', '%s', '%s' )";
 			String sql=String.format(str,
 										eid,caption,etag,uploaddate,type);
 	        int res = -1;

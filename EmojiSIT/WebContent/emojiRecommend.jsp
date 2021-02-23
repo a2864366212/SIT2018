@@ -101,112 +101,63 @@
 								  <div class="zl_content">
 								    <ul id="ISL_Photo">
 								      <li>
-									      <div style="height:150px;">
+								      	<div style="height:150px;/**垂直居中**/align-items:center; display: -webkit-flex;/**水平居中**/justify-content:center;">
+									      <div>
 									      	<div style="width:80px;height:80px;border:1px;">
 									      		<img class= "td_img" src="images/logo.jpg"/>
 								      		</div>
-								      		<div style="width:80px;height:80px;border:1px;">
-												<div class="cleanfloat">
-													<ul>
-														<li>&#9733;</li>
-														<li>&#9733;</li>
-														<li>&#9733;</li>
-														<li>&#9733;</li>
-														<li>&#9733;</li>
-													</ul>
-												</div>
-								      		</div>
+											<div class="cleanfloat">
+												<ul>
+													<li>&#9733;</li>
+													<li>&#9733;</li>
+													<li>&#9733;</li>
+													<li>&#9733;</li>
+													<li>&#9733;</li>
+												</ul>
+											</div>
+								      		
 									      </div>
+								      	</div>
 								      </li>
-								      <li>
-									      <div style="height:150px;">
-									      	<div style="width:80px;height:80px;border:1px;">
-									      		<img class= "td_img" src="images/0.jpg"/>
-								      		</div>
-								      		<div style="width:80px;height:80px;border:1px;">
-												<div class="cleanfloat">
-													<ul>
-														<li>&#9733;</li>
-														<li>&#9733;</li>
-														<li>&#9733;</li>
-														<li>&#9733;</li>
-														<li>&#9733;</li>
-													</ul>
-												</div>
-								      		</div>
-									      </div>
-								      </li>
-								      <li>
-									      <div style="height:150px;">
-									      	<div style="width:80px;height:80px;border:1px;">
-									      		<img class= "td_img" src="images/17.jpg"/>
-								      		</div>
-								      		<div style="width:80px;height:80px;border:1px;">
-												<div class="cleanfloat">
-													<ul>
-														<li>&#9733;</li>
-														<li>&#9733;</li>
-														<li>&#9733;</li>
-														<li>&#9733;</li>
-														<li>&#9733;</li>
-													</ul>
-												</div>
-								      		</div>
-									      </div>
-								      </li>
-								      <li>
-									      <div style="height:150px;">
-									      	<div style="width:80px;height:80px;border:1px;">
-									      		<img class= "td_img" src="images/15.jpg"/>
-								      		</div>
-								      		<div style="width:80px;height:80px;border:1px;">
-												<div class="cleanfloat">
-													<ul>
-														<li>&#9733;</li>
-														<li>&#9733;</li>
-														<li>&#9733;</li>
-														<li>&#9733;</li>
-														<li>&#9733;</li>
-													</ul>
-												</div>
-								      		</div>
-									      </div>
-								      </li>
-								      <li>
-									      <div style="height:150px;">
+								     
+								     <li>
+								      	<div style="height:150px;/**垂直居中**/align-items:center; display: -webkit-flex;/**水平居中**/justify-content:center;">
+									      <div>
 									      	<div style="width:80px;height:80px;border:1px;">
 									      		<img class= "td_img" src="images/21.jpg"/>
 								      		</div>
-								      		<div style="width:80px;height:80px;border:1px;">
-												<div class="cleanfloat">
-													<ul>
-														<li>&#9733;</li>
-														<li>&#9733;</li>
-														<li>&#9733;</li>
-														<li>&#9733;</li>
-														<li>&#9733;</li>
-													</ul>
-												</div>
-								      		</div>
+											<div class="cleanfloat">
+												<ul>
+													<li>&#9733;</li>
+													<li>&#9733;</li>
+													<li>&#9733;</li>
+													<li>&#9733;</li>
+													<li>&#9733;</li>
+												</ul>
+											</div>
+								      		
 									      </div>
+								      	</div>
 								      </li>
+								      
 								      <li>
-									      <div style="height:150px;">
+								      	<div style="height:150px;/**垂直居中**/align-items:center; display: -webkit-flex;/**水平居中**/justify-content:center;">
+									      <div>
 									      	<div style="width:80px;height:80px;border:1px;">
-									      		<img class= "td_img" src="images/7.jpg"/>
+									      		<img class= "td_img" src="images/17.jpg"/>
 								      		</div>
-								      		<div style="width:80px;height:80px;border:1px;">
-												<div class="cleanfloat">
-													<ul>
-														<li>&#9733;</li>
-														<li>&#9733;</li>
-														<li>&#9733;</li>
-														<li>&#9733;</li>
-														<li>&#9733;</li>
-													</ul>
-												</div>
-								      		</div>
+											<div class="cleanfloat">
+												<ul>
+													<li>&#9733;</li>
+													<li>&#9733;</li>
+													<li>&#9733;</li>
+													<li>&#9733;</li>
+													<li>&#9733;</li>
+												</ul>
+											</div>
+								      		
 									      </div>
+								      	</div>
 								      </li>
 								    </ul>
 								  </div>
