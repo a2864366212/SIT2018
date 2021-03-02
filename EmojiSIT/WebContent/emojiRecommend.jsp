@@ -100,69 +100,12 @@
 								  <div class="zl_left" id="Left_Photo"><a href="javascript:void(0)"><img src="images/zl_tb1.jpg" width="24" height="32" /></a></div>
 								  <div class="zl_content">
 								    <ul id="ISL_Photo">
-								      <li>
-								      	<div style="height:150px;/**垂直居中**/align-items:center; display: -webkit-flex;/**水平居中**/justify-content:center;">
-									      <div>
-									      	<div style="width:80px;height:80px;border:1px;">
-									      		<img class= "td_img" src="images/logo.jpg"/>
-								      		</div>
-											<div class="cleanfloat">
-												<ul>
-													<li>&#9733;</li>
-													<li>&#9733;</li>
-													<li>&#9733;</li>
-													<li>&#9733;</li>
-													<li>&#9733;</li>
-												</ul>
-											</div>
-								      		
-									      </div>
-								      	</div>
-								      </li>
-								     
-								     <li>
-								      	<div style="height:150px;/**垂直居中**/align-items:center; display: -webkit-flex;/**水平居中**/justify-content:center;">
-									      <div>
-									      	<div style="width:80px;height:80px;border:1px;">
-									      		<img class= "td_img" src="images/21.jpg"/>
-								      		</div>
-											<div class="cleanfloat">
-												<ul>
-													<li>&#9733;</li>
-													<li>&#9733;</li>
-													<li>&#9733;</li>
-													<li>&#9733;</li>
-													<li>&#9733;</li>
-												</ul>
-											</div>
-								      		
-									      </div>
-								      	</div>
-								      </li>
 								      
-								      <li>
-								      	<div style="height:150px;/**垂直居中**/align-items:center; display: -webkit-flex;/**水平居中**/justify-content:center;">
-									      <div>
-									      	<div style="width:80px;height:80px;border:1px;">
-									      		<img class= "td_img" src="images/17.jpg"/>
-								      		</div>
-											<div class="cleanfloat">
-												<ul>
-													<li>&#9733;</li>
-													<li>&#9733;</li>
-													<li>&#9733;</li>
-													<li>&#9733;</li>
-													<li>&#9733;</li>
-												</ul>
-											</div>
-								      		
-									      </div>
-								      	</div>
-								      </li>
 								    </ul>
 								  </div>
 								  <div class="zl_right" id="Right_Photo"><a href="javascript:void(0)"><img src="images/zl_tb2.jpg" width="24" height="32" /></a></div>
 								</div>
+								<button type="button" onclick="userBehavior()" style="height:30px;text-align:center;margin:10px">测试行为日志埋点</button>
 							</section>
 							<form method="get" action="#">
 								<textarea style="border:0;border-radius:5px;background-color:rgba(241,241,241,.98);height: 100px;padding: 10px;resize: none;" placeholder="在此输入..."></textarea>
@@ -186,6 +129,21 @@
 <script src="js/classie.js"></script>
 <script src="js/main.js"></script>
 <script type="text/javascript">
+	var maxEmojiNum=20;//列表最大图片数目
+	function init_ISL_Photo(){
+		var emoji=
+			'<li><div style="height:150px;align-items:center; display: -webkit-flex;justify-content:center;">'
+				+'<div style="width:80px;height:80px;border:1px;">'
+				+'<img class= "td_img" src="images/17.jpg"/>'
+				+'<div class="cleanfloat">'
+				+'<ul><li>&#9733;</li><li>&#9733;</li><li>&#9733;</li><li>&#9733;</li><li>&#9733;</li></ul>'
+				+'</div></div></div></li>';
+		for(var i=0;i<maxEmojiNum;i++){
+			$('#ISL_Photo').append(emoji);
+		}
+	}
+	init_ISL_Photo();
+
 	var scrollPhoto = new ScrollPicleft();
 	scrollPhoto.scrollContId   = "ISL_Photo"; // 内容容器ID""
 	scrollPhoto.arrLeftId      = "Left_Photo";//左箭头ID
@@ -199,6 +157,20 @@
 	scrollPhoto.initialize(); //初始化	
 </script>
 <script>
+	function userBehavior(){
+		$.ajax({
+	        type: "post",
+	        dataType: "json",
+	        url: "EmojiRecommend",
+	        data:{"userBehavior":"{\"uid\":\"user_id\",\"eid\":\"emoji_id\",\"type\":\"click\",\"timestamp\":\"2021-03-02\"}"},
+	        success: function () {
+	        	alert("前端埋点数据发送成功");
+	        },
+	        error:function(){
+	        	alert("前端埋点数据发送失败");
+	        	}
+	     });
+	}
     $(function () {
         $(".cleanfloat ul li").hover(function(){
             $(this).addClass('hs');

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+      <Appenders>
+        <Console name="myConsole" target="SYSTEM_OUT">
+          <JsonLayout/>
+          <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+    	<RollingFile name="myFile"
+          filePattern="D:/EmojiSIT_log/userBehavior-%d{yyyy-MM-dd}.log">
+          <!--单行json格式输出-->
+            <JsonLayout compact="true" locationInfo="true" complete="false" eventEol="true"/>
+        	<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
+       		<Policies>
+       			<!--按照时间切分log文件，间隔一天-->
+        		<TimeBasedTriggeringPolicy modulate="true" interval="5"/>  
+      		</Policies>
+        </RollingFile>          		
+      </Appenders>
+      <Loggers>
+        <Root level="Info">
+          <AppenderRef ref="myConsole"/>
+          <AppenderRef ref="myFile"/>
+        </Root>
+      </Loggers>
+</Configuration>
