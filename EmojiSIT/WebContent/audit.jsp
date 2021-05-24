@@ -161,6 +161,7 @@
 </body>
 <script src="js/classie.js"></script>
 <script>
+var isAnimating = false;
 function mainjs(){
 	var support = { animations : Modernizr.cssanimations },
 		animEndEventNames = {
@@ -178,13 +179,17 @@ function mainjs(){
 		itemsCount = items.length,
 		nav = component.querySelector( 'nav' ),
 		navNext = nav.querySelector( '.next' ),
-		navPrev = nav.querySelector( '.prev' ),
-		isAnimating = false;
+		navPrev = nav.querySelector( '.prev' );
+		//isAnimating = false;
 
 	function init() {
 		hideNav();
 		changeEffect();
-		navNext.addEventListener( 'click', function( ev ) { ev.preventDefault(); navigate( 'next' ); } );
+		navNext.addEventListener( 'click', function( ev ) { 
+			ev.preventDefault(); 
+			navigate( 'next' ); 
+			
+			} );
 		///navPrev.addEventListener( 'click', function( ev ) { ev.preventDefault(); navigate( 'prev' ); } );
 		//effectSel.addEventListener( 'change', changeEffect );
 	}
@@ -259,6 +264,8 @@ function mainjs(){
 
 		classie.addClass( currentItem, dir === 'next' ? 'navOutNext' : 'navOutPrev' );
 		classie.addClass( nextItem, dir === 'next' ? 'navInNext' : 'navInPrev' );
+		
+		
 	}
 
 	init();
@@ -332,13 +339,7 @@ $('#emojiList').ready(function(){//在emojiList元素加载时执行
 	//alert("初始化完成");
 });
 function renewEmoji(){
-	var len=$('li.current').length;
-	if(len==0){
-		alert(len);//此部分代码为尝试限制过快点击造成的不同步，失败
-		return;
-	}
-	
-	
+	if(isAnimating)return ;
 	emojiIdx=emojiIdx+1;
 	if(emojiIdx%maxEmojiNum==0){
 		//刷新显示的图片  加载缓存
@@ -359,6 +360,8 @@ function renewEmoji(){
 	$("div[name=rawTag]").html(tagArr[emojiIdx]);
 	$("textarea[name=caption]").html(captionArr[emojiIdx]);
 	$("textarea[name=tag]").html(tagArr[emojiIdx]);
+	
+	
 }
 function modifyEmoji(){//订正图片的文本描述
 	var emoji=$('li.current').children('img.imgdiv').attr("src");
