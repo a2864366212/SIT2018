@@ -27,6 +27,7 @@ public class EmojiAudit extends HttpServlet {
        
     /**
      * @see HttpServlet#HttpServlet()
+     * 
      */
     public EmojiAudit() {
         super();
@@ -35,8 +36,12 @@ public class EmojiAudit extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * 
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/*
+		 * 审核emoji_raw数据表中的图片，通过审核的图片被转移到emoji数据表中
+		 * */
 		String btn=request.getParameter("btn");
 		if(Objects.isNull(btn))return;
 		Map<String,String>emojiData=null;

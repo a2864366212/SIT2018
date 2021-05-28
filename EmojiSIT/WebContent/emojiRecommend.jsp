@@ -1,11 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+    
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 <title>推荐功能页面</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<script src="js/jquery-2.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jqcloud-1.0.4.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="css/jqcloud.css" />
+	<script src="bower_components/jqcloud2/dist/jqcloud.min.js"></script>
+	<link rel="stylesheet" href="bower_components/jqcloud2/dist/jqcloud.min.css">
 	<link rel="stylesheet" type="text/css" href="css/component.css" />
 	<link rel="stylesheet" type="text/css" href="css/fxsmall.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
@@ -13,6 +21,9 @@
 	<!-- <script src="js/modernizr.custom.js"></script>  -->
 	<script src="js/ScrollPicLeft.js"></script>
     <style>
+    .append_div {
+		background: black;color:#FFFFFF; opacity:0.5; text-align: center; position: absolute; height: 50px; width:200px; 
+	}
 	html,body,ul,li{margin:0; padding:0;}
 	ul,li{ list-style:none;}
 	.dd_main{ width:1100px;height:200px;text-align:center;}
@@ -86,11 +97,10 @@
 							<header>
 								<div class="title">
 									<h2><a href="#">推荐功能页面</a></h2>
-									<p>推荐刚做的表情包</p>
 								</div>
 								<div class="meta">
-									<time class="published" datetime="2015-11-01">2020-12-9</time>
-									<a href="#" class="author"><span class="name">Cyh</span><img src="images/0.jpg" alt="" /></a>
+									<time class="published"><%Date d = new Date();SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");String now = df.format(d);out.println(now);%></time>
+									<a href="#" class="author"><span class="name">用户姓名-头像图片</span><img src="images/0.jpg" alt="" /></a>
 								</div>
 							</header>
 							
@@ -105,56 +115,96 @@
 								  </div>
 								  <div class="zl_right" id="Right_Photo"><a href="javascript:void(0)"><img src="images/zl_tb2.jpg" width="24" height="32" /></a></div>
 								</div>
-								<button type="button" onclick="userBehavior()" style="height:30px;text-align:center;margin:10px">测试行为日志埋点</button>
 							</section>
+							
+							<div class="" style="width: 100%;">
+								<div id="tagCloud" style="width: 400px; margin: 0px auto; height: 400px; border: 1px solid #ccc; "></div>
+							</div>
+							
 							<form method="get" action="#">
-								<textarea style="border:0;border-radius:5px;background-color:rgba(241,241,241,.98);height: 100px;padding: 10px;resize: none;" placeholder="在此输入..."></textarea>
+								<textarea id="queryTxt" style="border:0;border-radius:5px;background-color:rgba(241,241,241,.98);height: 50px;padding: 10px;resize: none;margin:10px" placeholder="在此输入查询文本..."></textarea>
+								<textarea id="queryTagList" style="border:0;border-radius:5px;background-color:rgba(241,241,241,.98);height: 50px;padding: 10px;resize: none;margin:10px" placeholder="在此输入标签，以空格分隔"></textarea>
 								<div style="text-align:right" class=NULL>
-									<button type="submit" style="height:30px;text-align:center;margin:10px">提交</button>
+									<button type="button" onclick="queryEmoji()" style="height:30px;text-align:center;margin:10px">搜索</button>
+									<!-- 
+									<button type="button" onclick="tagCloudShow()" style="height:30px;text-align:center;margin:10px">标签云刷新</button>
+									-->
 								</div>
 							</form>
 							
-							<footer>
-								<ul class="stats">
-									<li><a href="#">General</a></li>
-									<li><a href="#" class="icon solid fa-heart">28</a></li>
-									<li><a href="#" class="icon solid fa-comment">128</a></li>
-								</ul>
-							</footer>
+							
 						</article>
 				</div>
 		</div>
 </body>
-<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+
 <script src="js/classie.js"></script>
 <script src="js/main.js"></script>
 <script type="text/javascript">
-	var maxEmojiNum=20;//列表最大图片数目
-	function init_ISL_Photo(){
-		var emoji=
-			'<li><div style="height:150px;align-items:center; display: -webkit-flex;justify-content:center;">'
-				+'<div style="width:80px;height:80px;border:1px;">'
-				+'<img class= "td_img" src="images/17.jpg"/>'
-				+'<div class="cleanfloat">'
-				+'<ul><li>&#9733;</li><li>&#9733;</li><li>&#9733;</li><li>&#9733;</li><li>&#9733;</li></ul>'
-				+'</div></div></div></li>';
+	//获取图片  发送查询的query文本
+	var maxEmojiNum=5;//列表最大图片数目
+    var emojiHolder=new Array();
+    var captionHolder=new Array();
+    var tagHolder=new Array();
+    var basePath='/img';//图片的虚拟映射根目录
+    
+    function initEmojiHolder(){
+    	for(var i=0;i<maxEmojiNum;i++){
+    		emojiHolder.push("1b4d9cfb-5ac1-462e-b7e1-8295814ed703.jpg");
+    	}
+    }
+
+	function showEmoji(){
+		$('#ISL_Photo').children().remove();
 		for(var i=0;i<maxEmojiNum;i++){
-			$('#ISL_Photo').append(emoji);
+			var imgEmoji=basePath+"/"+emojiHolder[i];
+			var emojiHtml=
+				'<li style="margin:20px;"><div style="height:180px;width:180px;align-items:center; display: -webkit-flex;justify-content:center">'
+					+'<div style="width:130px;height:130px;border:1px;">'
+						+'<img class= "td_img" src="'+imgEmoji+'"/>'
+					+'</div>'
+					+'<div style="width:20px;"><div>👍</div><div>👎</div></div>'
+					+'</div></li>';
+			$('#ISL_Photo').append(emojiHtml);
 		}
 	}
-	init_ISL_Photo();
-
-	var scrollPhoto = new ScrollPicleft();
-	scrollPhoto.scrollContId   = "ISL_Photo"; // 内容容器ID""
-	scrollPhoto.arrLeftId      = "Left_Photo";//左箭头ID
-	scrollPhoto.arrRightId     = "Right_Photo"; //右箭头ID
-	scrollPhoto.frameWidth     = 1000;//显示框宽度
-	scrollPhoto.pageWidth      = 1000; //翻页宽度
-	scrollPhoto.speed          = 10; //移动速度(单位毫秒，越小越快)
-	scrollPhoto.space          = 10; //每次移动像素(单位px，越大越快)
-	scrollPhoto.autoPlay       = false; //自动播放
-	scrollPhoto.autoPlayTime   = 3; //自动播放间隔时间(秒)
-	scrollPhoto.initialize(); //初始化	
+	initEmojiHolder();
+	showEmoji();
+	
+	function queryEmoji(){
+		var queryTxt=$('#queryTxt').val();
+		var queryTagList=$('#queryTagList').val();
+		$.ajax({
+	        type: 'post',
+	        data:{"maxEmojiNum":maxEmojiNum,"btn":"queryBtn","queryTxt":queryTxt,"queryTagList":queryTagList},
+	        dataType:"json",
+	        url:"EmojiRecommend",
+	        async:false,
+	        beforeSend: function(){
+	        	
+	            
+	        },
+	        success: function(data) {
+	        	var jsonObj =data;//= eval('(' + data + ')');
+	        	var emojiNum=jsonObj.emojiNum;
+	        	
+	        	emojiHolder.splice(0,emojiHolder.length);//清空缓存数组
+	        	captionHolder.splice(0,captionHolder.length);
+	        	tagHolder.splice(0,tagHolder.length);
+	        	
+	        	for(var i=0;i<emojiNum;i++){
+	        		emojiHolder.push(jsonObj['emoji-'+i]);
+	        		captionHolder.push(jsonObj['caption-'+i]);
+	        		tagHolder.push(jsonObj['tag-'+i]);
+	        	}
+	        	
+	        	showEmoji();
+	        },
+	        error: function(err) {
+	            
+	        }
+	    });
+	}
 </script>
 <script>
 	function userBehavior(){
@@ -186,5 +236,75 @@
             $(this).nextAll().removeClass('cs');
         })
     })
+</script>
+<script type="text/javascript">
+	//标签云
+	var tagFreqList =new Array();
+	
+	function on_mouseover(e, ev) {
+		var txt = $(e).html();
+		ev = ev || event;
+		$.each(tagFreqList, function(i, item) {
+			if(txt == item[0]){
+				var html = item[0]+"<br />曝光数"+item[1]+"<br />"+item[2];
+				$("#tagCloud").after("<div class='append_div' style='left:" + ev.clientX + "px; top:" + ev.clientY + "px; '>" + html + "</div>");
+				return;
+			}
+			
+		});
+	}
+	
+	function renewTagCloudData(){
+		$.ajax({
+	        type: "post",
+	        dataType: "json",
+	        url: "EmojiRecommend",
+	        data:{"renewTagCloudData":1},
+	        async:false,
+	        success: function(data) {
+	        	var jsonObj =data;
+	        	var etagNum=jsonObj.etagNum;
+	        	tagFreqList.splice(0,tagFreqList.length);
+	        	
+	        	for(var i=0;i<etagNum;i++){
+	        		var tag=jsonObj['etag-'+i];
+	        		var freq=parseInt(jsonObj['freq-'+i]);
+	        		tagFreqList.push([tag,freq]);
+	        	}
+	        },
+	        error:function(){
+	        	alert("更新标签云数据失败");
+	        	}
+	     });
+		
+	}
+	
+	function tagCloudShow() {
+		renewTagCloudData();//更新标签云数据
+		//alert(tagFreqList);
+		
+		var string_ = "";
+		for (var i = 0; i < tagFreqList.length; i++) {
+			var string_f = tagFreqList[i][0];
+			var string_n = tagFreqList[i][1];
+			string_ += "{text: '" + string_f + "', weight: '" + string_n + "',html: {'class': 'span_list'}},";
+			//string_ += "{text: '" + string_f + "', weight: '" + string_n + "',html: {'class': 'span_list',onmouseover:'on_mouseover(this,event)',onmouseout:'on_mouseout()'}},";
+		}
+		//alert(string_);
+		
+		var string_list = string_;
+		var word_list = eval("[" + string_list + "]");
+		$("#tagCloud").jQCloud(word_list,{
+	        removeOverflowing: true,
+	        height: 200,
+	        width : 400
+	    });
+	}
+	
+	tagCloudShow();//页面加载时显示标签云
+
+	function on_mouseout() {
+		$(".append_div").remove();
+	}
 </script>
 </html>

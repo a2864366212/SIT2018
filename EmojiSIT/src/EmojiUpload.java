@@ -38,6 +38,11 @@ import com.alibaba.fastjson.JSON;
  */
 @WebServlet("/EmojiUpload")
 public class EmojiUpload extends HttpServlet {
+	/*
+	 * 用户上传图片
+	 * 上传的图片会先被上传到emoji_raw数据表，经过审核之后，会转移到emoji数据表中
+	 * 目前的实现中可能会存在一致性的问题（emoji_raw已经删除，但emoji表中未成功插入）
+	 * */
 	private static final long serialVersionUID = 1L;
 	private static final String[] IMAGE_TYPE = new String[] {".bmp",".jpeg",".jpg",".gif",".png"};
     /**
@@ -50,6 +55,7 @@ public class EmojiUpload extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 *  
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Map<String, String>uploadData=null;

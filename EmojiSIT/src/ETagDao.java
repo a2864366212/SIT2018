@@ -1,11 +1,12 @@
-import java.io.IOException;
-import java.sql.*;
-public class UserDao {
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class ETagDao {
 	DbUtil dbUtil;
 	Statement stmt;
-	UserDao(){
+	ETagDao(){
 		dbUtil=new DbUtil();
-		
 		try {
 			stmt = dbUtil.getConnect().createStatement();
 		} catch (SQLException e) {
@@ -18,7 +19,7 @@ public class UserDao {
 		int res=-1;
 		try {
 			res=stmt.executeUpdate(sql);
-			System.out.println("add op result: "+res);
+			System.out.println("add ETag op result: "+res);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -29,60 +30,54 @@ public class UserDao {
 		int res=-1;
 		try {
 			res=stmt.executeUpdate(sql);
-			System.out.println("update op result: "+res);
+			System.out.println("update ETag op result: "+res);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return res;
 	}
-	public User getUser(String sql) {
-		ResultSet rs;
-		User user=null;
+	public int delete(String sql) {
+		int res=-1;
 		try {
-			rs=stmt.executeQuery(sql);
-			while (rs.next()){
-				user=new User(rs.getInt("uid"),
-								   rs.getString("username"),
-								   rs.getString("email"),
-								   rs.getString("phone"),
-								   rs.getString("pass"),
-								   rs.getInt("age"),
-								   rs.getString("sex"));
-				
-	   
-			}
-			rs.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return user;
-	}
-	public boolean isExist(String sql) {
-		ResultSet rs;
-		User user=null;
-		boolean res=false;
-		try {
-			rs=stmt.executeQuery(sql);
-			
-			while (rs.next()){
-				user=new User(rs.getInt("uid"),
-								   rs.getString("username"),
-								   rs.getString("email"),
-								   rs.getString("phone"),
-								   rs.getString("pass"),
-								   rs.getInt("age"),
-								   rs.getString("sex"));
-				res=true;
-	   
-			}
-			rs.close();
+			res=stmt.executeUpdate(sql);
+			System.out.println("delete ETag op result: "+res);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return res;
+	}
+	public ETag getETag(String sql) {
+		ResultSet rs;
+		ETag ETag=null;
+		try {
+			rs=stmt.executeQuery(sql);
+			while (rs.next()){
+				ETag=new ETag(   rs.getInt("etagid"),
+								   rs.getString("etag"),
+								   rs.getInt("freq")
+							);
+				break;
+			}
+			rs.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return ETag;
+	}
+	public ResultSet getETagResultSet(String sql) {
+		ResultSet rs=null;
+		try {
+			rs=stmt.executeQuery(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return rs;
 	}
 	public void close() {
 		try {

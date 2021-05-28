@@ -7,7 +7,7 @@ import java.sql.Date;
  *  1. eid：表情图片id，uuid前端生成，也即图片文件名
 	2. caption：图片内容标识文本，varchar(50)
 	3. etag：表情图片的属性信息，varchar(50)
-	4. review：BOOLEAN，审核位，为1则为已经审核过的图片
+	4. review：BOOLEAN，审核位，为1则为已经审核过的图片// 还未使用 若使用则将emoji_raw与emoji合并，不对图片做真删除
 	5. uploaddate：上传日期，DATE类型
 	6. uid：上传用户id
 	7. type：表情图片类型，"jpg" 、"jpeg"、 "png"等
